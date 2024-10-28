@@ -45,6 +45,31 @@ static const char *regs_name_hcsr[] = {
   "vstvec","vsepc", "vscause", "vstval", "vsatp", "vsscratch"
 };
 
+// static const char *regs_name_ncsr[] = {
+//   "ustatus", "ucause", "uepc", 
+//   "uscratch", "utval", "utvec", 
+//   "sedeleg", "sideleg"
+// };
+
+static const char *regs_name_dasicscsr[] = {
+  "dasicsMainCfg", 
+  // "dasicsSMBoundLo", "dasicsSMBoundHi", 
+  "dasicsUMBoundLo", "dasicsUMBoundHi",
+  "dasicsLibCfg",
+  "dasicsLibBound0", "dasicsLibBound1", "dasicsLibBound2", "dasicsLibBound3",
+  "dasicsLibBound4", "dasicsLibBound5", "dasicsLibBound6", "dasicsLibBound7",
+  "dasicsLibBound8", "dasicsLibBound9", "dasicsLibBound10", "dasicsLibBound11",
+  "dasicsLibBound12", "dasicsLibBound13", "dasicsLibBound14", "dasicsLibBound15",
+  "dasicsLibBound16", "dasicsLibBound17", "dasicsLibBound18", "dasicsLibBound19",
+  "dasicsLibBound20", "dasicsLibBound21", "dasicsLibBound22", "dasicsLibBound23",
+  "dasicsLibBound24", "dasicsLibBound25", "dasicsLibBound26", "dasicsLibBound27",
+  "dasicsLibBound28", "dasicsLibBound29", "dasicsLibBound30", "dasicsLibBound31",
+  "dasicsMainCall", "dasicsReturnPC", "dasicsAZoneReturnPC", 
+  "dasicsJumpCfg", 
+  "dasicsJumpBound0", "dasicsJumpBound1","dasicsJumpBound2", "dasicsJumpBound3", 
+  "dasicsJumpBound4", "dasicsJumpBound5","dasicsJumpBound6", "dasicsJumpBound7"
+};
+
 static const char *regs_name_fp[] = {
   "ft0", "ft1", "ft2",  "ft3",  "ft4", "ft5", "ft6",  "ft7",
   "fs0", "fs1", "fa0",  "fa1",  "fa2", "fa3", "fa4",  "fa5",
@@ -186,6 +211,12 @@ public:
 #ifdef CONFIG_DIFFTEST_HCSRSTATE
   DifftestHCSRState hcsr;
 #endif // CONFIG_DIFFTEST_HCSRSTATE
+// #ifdef CONFIG_DIFFTEST_NCSRSTATE
+//   DifftestNCSRState ncsr;
+// #endif // CONFIG_DIFFTEST_NCSRSTATE
+#ifdef CONFIG_DIFFTEST_DASICSCSRSTATE
+  DifftestDasicsCSRState dasicscsr;
+#endif // CONFIG_DIFFTEST_DASICSCSRSTATE
 #ifdef CONFIG_DIFFTEST_ARCHVECREGSTATE
   DifftestArchVecRegState regs_vec;
 #endif // CONFIG_DIFFTEST_ARCHVECREGSTATE
@@ -301,6 +332,12 @@ public:
 #ifdef CONFIG_DIFFTEST_HCSRSTATE
            + sizeof(DifftestHCSRState)
 #endif // CONFIG_DIFFTEST_HCSRSTATE
+// #ifdef CONFIG_DIFFTEST_NCSRSTATE
+//            + sizeof(DifftestNCSRState)
+// #endif // CONFIG_DIFFTEST_NCSRSTATE
+#ifdef CONFIG_DIFFTEST_DASICSCSRSTATE
+           + sizeof(DifftestDasicsCSRState)
+#endif // CONFIG_DIFFTEST_DASICSCSRSTATE
 #ifdef CONFIG_DIFFTEST_TRIGGERCSRSTATE
            + sizeof(DifftestTriggerCSRState)
 #endif //CONFIG_DIFFTEST_TRIGGERCSRSTATE
@@ -348,6 +385,10 @@ struct ExecutionGuide {
   uint64_t exception_num;
   uint64_t mtval;
   uint64_t stval;
+// #ifdef CONFIG_DIFFTEST_NCSRSTATE
+//   uint64_t utval;
+//   // N TODO: check whether it is correct
+// #endif // CONFIG_DIFFTEST_NCSRSTATE
 #ifdef CONFIG_DIFFTEST_HCSRSTATE
   uint64_t mtval2;
   uint64_t htval;

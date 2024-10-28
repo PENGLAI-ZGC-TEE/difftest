@@ -268,6 +268,18 @@ class DiffHCSRState extends HCSRState with DifftestBundle {
   override val updateDependency: Seq[String] = Seq("commit", "event")
 }
 
+// class DiffNCSRState extends NCSRState with DifftestBundle {
+//   override val desiredCppName: String = "ncsr"
+//   override val desiredOffset: Int = 8
+//   override val updateDependency: Seq[String] = Seq("commit", "event")
+// }
+
+class DiffDasicsCSRState extends DasicsCSRState with DifftestBundle {
+  override val desiredCppName: String = "dasicscsr"
+  override val desiredOffset: Int = 9
+  override val updateDependency: Seq[String] = Seq("commit", "event")
+}
+
 //class DiffHCSRStateValidate extends DiffHCSRState with DifftestIsValidated
 
 class DiffDebugMode extends DebugModeCSRState with DifftestBundle {

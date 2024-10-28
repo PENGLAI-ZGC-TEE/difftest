@@ -419,6 +419,10 @@ void Difftest::do_exception() {
     guide.exception_num = dut->event.exception;
     guide.mtval = dut->csr.mtval;
     guide.stval = dut->csr.stval;
+// #ifdef CONFIG_DIFFTEST_NCSRSTATE
+//     guide.utval = dut->csr.utval;
+//     // N TODO: check whether it is correct
+// #endif // CONFIG_DIFFTEST_NCSRSTATE
 #ifdef CONFIG_DIFFTEST_HCSRSTATE
     guide.mtval2 = dut->hcsr.mtval2;
     guide.htval = dut->hcsr.htval;
