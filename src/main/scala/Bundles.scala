@@ -148,7 +148,7 @@ class DasicsCSRState extends DifftestBaseBundle {
   val dasicsLibBound = Vec(32, UInt(64.W))
   val dasicsMainCall = UInt(64.W)
   val dasicsReturnPC = UInt(64.W)
-  val dasicsAZoneReturnPC = UInt(64.W)
+  // val dasicsAZoneReturnPC = UInt(64.W)
   // val dasicsFReason = UInt(64.W)
   val dasicsJumpCfg = UInt(64.W)
   val dasicsJumpBound = Vec(8, UInt(64.W))

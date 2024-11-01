@@ -64,7 +64,7 @@ static const char *regs_name_dasicscsr[] = {
   "dasicsLibBound20", "dasicsLibBound21", "dasicsLibBound22", "dasicsLibBound23",
   "dasicsLibBound24", "dasicsLibBound25", "dasicsLibBound26", "dasicsLibBound27",
   "dasicsLibBound28", "dasicsLibBound29", "dasicsLibBound30", "dasicsLibBound31",
-  "dasicsMainCall", "dasicsReturnPC", "dasicsAZoneReturnPC", 
+  "dasicsMainCall", "dasicsReturnPC", 
   "dasicsJumpCfg", 
   "dasicsJumpBound0", "dasicsJumpBound1","dasicsJumpBound2", "dasicsJumpBound3", 
   "dasicsJumpBound4", "dasicsJumpBound5","dasicsJumpBound6", "dasicsJumpBound7"
