@@ -116,7 +116,8 @@ VERILATOR_FLAGS =                   \
   -CFLAGS "\$$(PGO_CFLAGS)"         \
   -LDFLAGS "\$$(PGO_LDFLAGS)"       \
   -o $(abspath $(EMU))              \
-  $(VEXTRA_FLAGS)
+  $(VEXTRA_FLAGS)                   \
+  -f $(NOOP_HOME)/src/main/resources/TLROT/zgc_system_rot_top_verilator.vc
 
 EMU_DIR = $(BUILD_DIR)/emu-compile
 EMU_MK  = $(EMU_DIR)/V$(EMU_TOP).mk

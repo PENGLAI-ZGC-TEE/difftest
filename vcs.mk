@@ -74,6 +74,7 @@ VCS_FLAGS += -Mdir $(VCS_BUILD_DIR)  --compiler gcc
 VCS_CXXFLAGS += -std=c++20
 else
 VCS_FLAGS += -full64 +v2k -timescale=1ns/1ns -sverilog -debug_access+all +lint=TFIPC-L
+VCS_FLAGS += -fgp -lca -kdb +nospecify +notimingcheck
 VCS_FLAGS += -Mdir=$(VCS_BUILD_DIR) -j200
 VCS_FLAGS += +define+VCS
 ifeq ($(ENABLE_XPROP),1)
@@ -105,11 +106,13 @@ VCS_FLAGS += -y $(RTL_DIR) +libext+.v +libext+.sv
 VCS_FLAGS += +incdir+$(GEN_VSRC_DIR)
 # enable fsdb dump
 VCS_FLAGS += $(EXTRA)
+# allow system verilog assertion (svaext) for RoT
+VCS_FLAGS += -assert svaext
 
 VCS_VSRC_DIR = $(abspath ./src/test/vsrc/vcs)
 VCS_VFILES   = $(SIM_VSRC) $(shell find $(VCS_VSRC_DIR) -name "*.v")
-$(VCS_TARGET): $(SIM_TOP_V) $(VCS_CXXFILES) $(VCS_VFILES)
-	$(VCS) $(VCS_FLAGS) $(SIM_TOP_V) $(VCS_CXXFILES) $(VCS_VFILES)
+$(VCS_TARGET): $(SIM_TOP_V) $(VCS_CXXFILES) $(VCS_VFILES) 
+	$(VCS) $(VCS_FLAGS) $(SIM_TOP_V) $(VCS_CXXFILES) $(VCS_VFILES) -f $(NOOP_HOME)/src/main/resources/TLROT/zgc_system_rot_top_vcs_filelist
 ifeq ($(VCS),verilator)
 	$(MAKE) -s -C $(VCS_BUILD_DIR) -f V$(VCS_TOP).mk
 endif
